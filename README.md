@@ -18,7 +18,7 @@ O endpoint está disponível em: https://rfpz6ql3l2yeyio5lchhshes4q0pipro.lambda
 
 ### 2. Formato da Solicitação
 - **Método HTTP**: O método HTTP utilizado para fazer a solicitação é o POST.
-- Header Content-Type: application/json
+- **Header Content-Type**: É recomendado incluir o header Content-Type com o valor application/json.
 
 ### 3. Corpo da Solicitação
 Envie o seguinte JSON no corpo da solicitação, preenchendo os campos com os valores apropriados:
