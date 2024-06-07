@@ -14,7 +14,16 @@ function cleanRequestCache() {
 }
 
 export async function handler(event) {
-    const { cep, service } = event;
+   let cep, service;
+
+    if (event.body) {
+        const requestBody = JSON.parse(event.body); 
+        cep = requestBody.cep;
+        service = requestBody.service;
+    } else {
+        cep = event.cep;
+        service = event.service;
+    }
 
     if (!cep || !/^(\d{5}-\d{3}|\d{8})$/.test(cep)) {
         return {
@@ -109,7 +118,7 @@ export async function handler(event) {
                     uf
                 };
             } else if (service.toLowerCase() === 'cepaberto') {
-                const { logradouro, bairro, cidade, estado } = response.data;
+                const { logradouro, bairro, cidade, estado, complemento, altitude, latitude, longitude} = response.data;
                 if (!logradouro || !bairro || !cidade || !estado) {
                     return {
                         statusCode: 500,
@@ -117,12 +126,15 @@ export async function handler(event) {
                     };
                 }
                 formattedResponse = {
+                    altitude,
                     cep,
+                    latitude,
+                    longitude,
                     logradouro,
-                    complemento: '',
                     bairro,
-                    localidade: cidade.nome,
-                    uf: estado.sigla
+                    complemento: complemento || '',
+                    cidade,
+                    estado
                 };
             }
 
