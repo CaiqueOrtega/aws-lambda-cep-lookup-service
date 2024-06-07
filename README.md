@@ -13,13 +13,15 @@ Este projeto consiste em uma função AWS Lambda escrita em Node.js que fornece 
 
 ## Como Usar
 
-Para utilizar o serviço de consulta de CEP, você pode enviar uma solicitação HTTP para o endpoint da função Lambda. O endpoint está disponível em:
-https://rfpz6ql3l2yeyio5lchhshes4q0pipro.lambda-url.us-east-2.on.aws/
+### 1. Envie uma solicitação HTTP para o endpoint da função Lambda.
+O endpoint está disponível em: https://rfpz6ql3l2yeyio5lchhshes4q0pipro.lambda-url.us-east-2.on.aws/
 
-## Formato da Solicitação
+### 2. Formato da Solicitação
+- **Método HTTP**: O método HTTP utilizado para fazer a solicitação é o POST.
+- Header Content-Type: application/json
 
-**Método HTTP**: O método HTTP utilizado para fazer a solicitação é o POST.
-
+### 3. Corpo da Solicitação
+Envie o seguinte JSON no corpo da solicitação, preenchendo os campos com os valores apropriados:
 ```json
 {
   "cep": "01001000",
